@@ -49,6 +49,8 @@ export default class LinkButton extends Component {
     const range = cursor.offsets;
     const selectedText = cursor.selectedText();
     const marker = range.headMarker;
+    const closeLinkField = this.closeLinkField.bind(this);
+    const { wrapper } = this.refs;
     let currentHref;
     
     if (!activeSection)
@@ -67,6 +69,15 @@ export default class LinkButton extends Component {
       selectedText,
       activeSection,
       currentHref
+    }, () => {
+      function close(e) {
+        if (!wrapper.contains(e.target)) {
+          closeLinkField();
+          window.removeEventListener('click', close);
+        }
+      }
+
+      window.addEventListener('click', close);
     });
   }
 
@@ -180,8 +191,8 @@ export default class LinkButton extends Component {
     const buttonClass = classnames('toolbar-button');
 
     return (
-      <div className="link-button-wrapper">
-        <button className={buttonClass} onClick={this.toggleLinkField.bind(this)} ref="button">
+      <div className="link-button-wrapper" ref="wrapper">
+        <button className={buttonClass} onClick={this.toggleLinkField.bind(this)} ref="button" type="button">
           <i className={icon} />
         </button>
 
