@@ -39,6 +39,14 @@
         cursor: pointer;
         font-size: 1.4em;
         margin: 0 5px;
+
+        &.confirm:hover {
+          color: #4DB3A2;
+        }
+
+        &.cancel:hover {
+          color: #F3565D;
+        }
       }
     }
   }
@@ -60,6 +68,51 @@
     .toolbar-link-tooltip {
       top: 31px;
       left: calc(-99px + 50%);
+    }
+  }
+
+  .toolbar-dropdown-wrapper {
+    display: inline-block;
+
+    &.open {
+      .toolbar-button {
+        background-color: #ccc;
+      }
+
+      .toolbar-dropdown-menu {
+        display: block;
+      }
+    }
+
+    .toolbar-dropdown-menu {
+      position: absolute;
+      border: 1px solid #ccc;
+      z-index: 1000;
+      background-color: #fcfcfc;
+      display: none;
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          cursor: pointer;
+          padding: 5px 15px;
+
+          &:not(:last-child) {
+            margin-bottom: 8px;
+          }
+
+          &.active {
+            font-weight: 600;
+          }
+
+          &:hover {
+            background-color: #ddd;
+          }
+        }
+      }
     }
   }
 }

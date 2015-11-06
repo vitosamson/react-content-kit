@@ -2,12 +2,14 @@ import SectionButton from './SectionButton';
 import MarkupButton from './MarkupButton';
 import ListButton from './ListButton';
 import LinkButton from './LinkButton';
+import DropdownButton from './DropdownButton';
 
 export default {
   SectionButton,
   MarkupButton,
   LinkButton,
-  LinkButton
+  LinkButton,
+  DropdownButton
 }
 
 export const BUILTIN_BUTTONS = {
@@ -124,5 +126,16 @@ export const BUILTIN_BUTTONS = {
   link: {
     button: LinkButton,
     icon: 'fa fa-link'
+  },
+
+  paragraph: {
+    button: DropdownButton,
+    icon: 'fa fa-paragraph',
+    options: [
+      {label: 'Heading 1', markup: 'h1', type: 'section'},
+      {label: 'Heading 2', markup: 'h2', type: 'section'},
+      {label: 'Heading 3', markup: 'h3', type: 'section'},
+      {label: 'Paragraph', markup: 'p', type: 'section'}
+    ]
   }
 }

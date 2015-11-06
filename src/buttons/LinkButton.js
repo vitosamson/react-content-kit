@@ -1,4 +1,5 @@
 import { Component, PropTypes } from 'react';
+import { Editor } from 'content-kit-editor';
 import { findDOMNode } from 'react-dom';
 import classnames from 'classnames';
 
@@ -15,7 +16,8 @@ export default class LinkButton extends Component {
   static propTypes = {
     icon: PropTypes.string,
     onClick: PropTypes.func,
-    isActive: PropTypes.func
+    isActive: PropTypes.func,
+    editor: PropTypes.instanceOf(Editor)
   }
 
   static defaultProps = {
@@ -247,8 +249,8 @@ class LinkFieldTooltip extends Component {
       <div className="ck-tooltip toolbar-link-tooltip">
         <form onSubmit={this.addLink.bind(this)}>
           <input type="text" ref="inputField" defaultValue={currentHref} />
-          <i className="fa fa-check" onClick={this.addLink.bind(this)}></i>
-          <i className="fa fa-times" onClick={this.onClose.bind(this)}></i>
+          <i className="confirm fa fa-check" onClick={this.addLink.bind(this)}></i>
+          <i className="cancel fa fa-times" onClick={this.onClose.bind(this)}></i>
         </form>
       </div>
     );

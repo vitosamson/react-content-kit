@@ -20,11 +20,7 @@ export default class Editor extends Component {
     toolbarButtons: [
       ['strong', 'em'],
       ['ol', 'ul'],
-      ['h3', 'blockquote', 'link'],
-      [{
-        markup: 'h1',
-        icon: 'fa fa-header'
-      }]
+      ['paragraph', 'blockquote', 'link']
     ]
   }
 
