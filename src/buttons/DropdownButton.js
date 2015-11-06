@@ -29,6 +29,8 @@ export default class DropdownButton extends Component {
     const { post, cursor } = editor;
 
     editor.cursorDidChange(() => {
+      if (!cursor.hasCursor()) return;
+
       this.setState({
         activeSectionTags: editor.activeSections.map(section => section.tagName),
         activeMarkupTags: post.markupsInRange(cursor.offsets).map(markup => markup.tagName)
