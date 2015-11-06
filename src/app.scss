@@ -1,0 +1,65 @@
+* {
+  box-sizing: border-box;
+}
+
+.editor-wrapper {
+  min-height: 200px;
+  border: 1px solid #ccc;
+
+  .toolbar {
+    border-bottom: 1px solid #ccc;
+
+    .toolbar-button {
+      display: inline-block;
+      height: 30px;
+      min-width: 30px;
+      text-align: center;
+      padding-top: 4px;
+      cursor: pointer;
+      background-color: #fff;
+      border: 0;
+      font-size: 0.9em;
+      outline: 0;
+
+      &:hover,
+      &.active {
+        background-color: #ccc;
+      }
+    }
+
+    .toolbar-separator {
+      width: 1px;
+      border-right: 1px solid #aaa;
+    }
+
+    .toolbar-link-tooltip {
+      z-index: 1000;
+
+      i {
+        cursor: pointer;
+        font-size: 1.4em;
+        margin: 0 5px;
+      }
+    }
+  }
+
+  .editor {
+    min-height: 200px;
+    margin: 0;
+    padding: 12px;
+
+    p {
+      margin-top: 0;
+    }
+  }
+
+  .link-button-wrapper {
+    display: inline-block;
+    position: relative;
+
+    .toolbar-link-tooltip {
+      top: 31px;
+      left: calc(-99px + 50%);
+    }
+  }
+}
