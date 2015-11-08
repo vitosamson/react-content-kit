@@ -13,7 +13,8 @@ export default class Editor extends Component {
   static propTypes = {
     showToolbar: PropTypes.bool,
     toolbarButtons: PropTypes.array,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    onFileSelect: PropTypes.func
   }
 
   static defaultProps = {
@@ -21,7 +22,8 @@ export default class Editor extends Component {
     toolbarButtons: [
       ['strong', 'em'],
       ['ol', 'ul'],
-      ['paragraph', 'blockquote', 'link']
+      ['paragraph', 'blockquote', 'link'],
+      ['image']
     ]
   }
 
@@ -68,11 +70,11 @@ export default class Editor extends Component {
   }
 
   render() {
-    const { showToolbar, toolbarButtons } = this.props;
+    const { showToolbar, toolbarButtons, onFileSelect } = this.props;
 
     return (
       <div className="editor-wrapper">
-        { showToolbar && <Toolbar editor={this.state.editor} buttons={toolbarButtons} /> }
+        { showToolbar && <Toolbar editor={this.state.editor} buttons={toolbarButtons} onFileSelect={onFileSelect} /> }
         <div className="editor" ref="editor"></div>
       </div>
 

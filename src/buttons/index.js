@@ -3,13 +3,15 @@ import MarkupButton from './MarkupButton';
 import ListButton from './ListButton';
 import LinkButton from './LinkButton';
 import DropdownButton from './DropdownButton';
+import ImageButton from './ImageButton';
 
 export default {
   SectionButton,
   MarkupButton,
   LinkButton,
   LinkButton,
-  DropdownButton
+  DropdownButton,
+  ImageButton
 }
 
 export const BUILTIN_BUTTONS = {
@@ -137,5 +139,10 @@ export const BUILTIN_BUTTONS = {
       {label: 'Heading 3', markup: 'h3', type: 'section'},
       {label: 'Paragraph', markup: 'p', type: 'section'}
     ]
+  },
+
+  image: {
+    button: ImageButton,
+    icon: 'fa fa-picture-o'
   }
 }

@@ -18,11 +18,12 @@ export default class Toolbar extends Component {
     buttons: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.oneOfType([
       PropTypes.object,
       PropTypes.string
-    ])))
+    ]))),
+    onFileSelect: PropTypes.func
   }
 
   render() {
-    const { buttons, editor } = this.props;
+    const { buttons, editor, onFileSelect } = this.props;
 
     const buttonGroups = buttons;
 
@@ -40,12 +41,16 @@ export default class Toolbar extends Component {
                 if ('string' === typeof button && button in BUILTIN_BUTTONS) {
                   ButtonComponent = BUILTIN_BUTTONS[button].button;
                   buttonConfig = BUILTIN_BUTTONS[button];
+
+                  if (button === 'image') {
+                    buttonConfig.onFileSelect = onFileSelect;
+                  }
                 } else if ('object' === typeof button && !isValidElement(button)) {
                   ButtonComponent = BUILTIN_BUTTONS[button.markup].button;
                   buttonConfig = assign({}, BUILTIN_BUTTONS[button.markup], button);
 
                   if (!ButtonComponent) return;
-                } else {
+                } else { // TODO: allow custom buttons
                   return;
                 }
 

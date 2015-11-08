@@ -33,7 +33,7 @@ header {
       height: 30px;
       min-width: 30px;
       text-align: center;
-      padding-top: 4px;
+      padding: 4px 6px;
       cursor: pointer;
       background-color: #fff;
       border: 0;
@@ -79,6 +79,26 @@ header {
 
     p {
       margin-top: 0;
+    }
+
+    .image-card {
+      position: relative;
+
+      .remove-button {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        border: 1px solid #fcfcfc;
+        border-radius: 10px;
+        background-color: rgba(255, 255, 255, 0.5);
+        color: #fff;
+        cursor: pointer;
+        line-height: normal;
+        font-size: 14px;
+      }
     }
   }
 
@@ -147,4 +167,21 @@ header {
 
 .rendered-content-wrapper {
   margin-bottom: 40px;
+}
+
+.rendered-content {
+  img {
+    max-width: 100%;
+  }
+}
+
+.upload-progress {
+  height: 6px;
+  border: 1px solid #ccc;
+  border-bottom: 0;
+
+  .progress {
+    height: 100%;
+    background-color: steelblue;
+  }
 }

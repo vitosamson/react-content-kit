@@ -27,7 +27,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
-    "watch": "webpack-dev-server --config ./webpack.config.dev.js"
+    "watch": "webpack-dev-server --hot --config ./webpack.config.dev.js"
   },
   "author": "Vito LaVilla <vito@vitosamson.com>",
   "license": "MIT"

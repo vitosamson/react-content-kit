@@ -2,6 +2,7 @@ import { Component, createElement } from 'react';
 import Renderer from 'mobiledoc-html-renderer/lib';
 
 import Editor from './Editor';
+import { imgurClientId } from './config';
 import './app.scss';
 
 export default class App extends Component {
@@ -10,7 +11,9 @@ export default class App extends Component {
 
     this.state = {
       mobiledoc: {},
-      content: ''
+      content: '',
+      uploading: false,
+      uploadProgress: 0
     };
   }
 
@@ -26,8 +29,42 @@ export default class App extends Component {
     });
   }
 
+  onFileSelect(files, cb) {
+    const file = files[0];
+    const formData = new FormData();
+    const xhr = new XMLHttpRequest();
+
+    if (!file) return;
+
+    formData.append('image', file);
+    xhr.open('post', 'https://api.imgur.com/3/image');
+    xhr.setRequestHeader('Authorization', `Client-ID ${imgurClientId}`);
+    xhr.addEventListener('load', (e) => {
+      const res = JSON.parse(e.target.response);
+      cb(res.data.link);
+
+      this.setState({
+        uploading: false,
+        uploadProgress: 0
+      });
+    });
+    xhr.upload.addEventListener('progress', (e) => {
+      if (e.lengthComputable) {
+        this.setState({
+          uploadProgress: (e.loaded / e.total) * 100
+        });
+      }
+    });
+
+    this.setState({
+      uploading: true
+    }, () => {
+      xhr.send(formData);
+    });
+  }
+
   render() {
-    const { content, mobiledoc } = this.state;
+    const { content, mobiledoc, uploading, uploadProgress } = this.state;
 
     return (
       <div>
@@ -41,7 +78,14 @@ export default class App extends Component {
         </header>
 
         <h2>Editor</h2>
-        <Editor onChange={this.onContentChange.bind(this)} />
+
+        { uploading &&
+          <div className="upload-progress">
+            <div className="progress" style={{width: `${uploadProgress}%`}}></div>
+          </div>
+        }
+
+        <Editor onChange={this.onContentChange.bind(this)} onFileSelect={this.onFileSelect.bind(this)} />
 
         <h2>Rendered Output</h2>
         <div className="rendered-content-wrapper">

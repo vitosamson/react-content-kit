@@ -82,7 +82,12 @@ export default class LinkButton extends Component {
   }
 
   closeLinkField() {
-    this.props.editor.selectRange(this.state.range);
+    const { editor } = this.props;
+    const { range } = this.state;
+
+    if (range) {
+      editor.selectRange(range);
+    }
 
     this.setState({
       linkFieldOpen: false,
