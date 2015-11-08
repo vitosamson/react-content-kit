@@ -12,7 +12,8 @@ export default class Editor extends Component {
 
   static propTypes = {
     showToolbar: PropTypes.bool,
-    toolbarButtons: PropTypes.array
+    toolbarButtons: PropTypes.array,
+    onChange: PropTypes.func
   }
 
   static defaultProps = {
@@ -25,7 +26,8 @@ export default class Editor extends Component {
   }
 
   componentDidMount() {
-    const { toolbarButtons } = this.props;
+    const { toolbarButtons, onChange } = this.props;
+
     const simpleMobiledoc = {
       version: "0.1",
       sections: [[], [
@@ -45,9 +47,24 @@ export default class Editor extends Component {
     });
 
     this.editor.render(this.refs.editor);
+    this.setupListeners();
+
+    if (onChange) {
+      onChange(this.editor.serialize());
+    }
 
     // for the debugs
     window.editor = this.editor;
+  }
+
+  setupListeners() {
+    const { onChange } = this.props;
+
+    this.editor.didUpdatePost(postEditor => {
+      if (onChange) {
+        onChange(postEditor.editor.serialize());
+      }
+    });
   }
 
   render() {

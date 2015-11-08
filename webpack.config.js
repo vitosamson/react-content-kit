@@ -19,14 +19,14 @@ module.exports = {
     loaders: [{
       test: /\.js$/,
       loaders: ['babel'],
-      exclude: /node_modules/
+      include: [/src/, /node_modules\/mobiledoc-html-renderer/]
     }, {
       test: /\.scss$/,
       loader: scssPlugin.extract('style', 'css!sass')
     }]
   },
   resolve: {
-    moduleDirectories: ['node_modules'],
+    moduleDirectories: ['node_modules']
   },
   plugins: [
     scssPlugin,

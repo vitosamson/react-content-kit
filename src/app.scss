@@ -1,13 +1,32 @@
 * {
-  box-sizing: border-box;
+  &,
+  &:after,
+  &:before {
+    box-sizing: border-box;
+  }
+
+  font-family: sans-serif;
+}
+
+body {
+  background-color: #f3f3f3;
+  padding: 10px 20px;
+}
+
+header {
+  .subheader {
+    color: #565656;
+  }
 }
 
 .editor-wrapper {
   min-height: 200px;
   border: 1px solid #ccc;
+  margin-bottom: 40px;
 
   .toolbar {
     border-bottom: 1px solid #ccc;
+    background-color: #fff;
 
     .toolbar-button {
       display: inline-block;
@@ -30,6 +49,7 @@
     .toolbar-separator {
       width: 1px;
       border-right: 1px solid #aaa;
+      margin: 0 4px;
     }
 
     .toolbar-link-tooltip {
@@ -55,6 +75,7 @@
     min-height: 200px;
     margin: 0;
     padding: 12px;
+    background-color: #fff;
 
     p {
       margin-top: 0;
@@ -115,4 +136,15 @@
       }
     }
   }
+}
+
+.rendered-content-wrapper,
+.mobiledoc-output-wrapper {
+  border: 1px solid #ccc;
+  padding: 12px;
+  background-color: #fff;
+}
+
+.rendered-content-wrapper {
+  margin-bottom: 40px;
 }
